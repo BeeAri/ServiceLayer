@@ -6,6 +6,7 @@ namespace ServiceLayer.Models;
 
 public partial class Musteri
 {
+    //[JsonPropertyName("Id")]
     public int MusteriId { get; set; }
 
     public string MusteriAdi { get; set; } = null!;

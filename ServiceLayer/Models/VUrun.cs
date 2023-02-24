@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace ServiceLayer.Models;
 
-public partial class Urun
+public partial class VUrun
 {
     public int UrunId { get; set; }
 
@@ -12,7 +12,7 @@ public partial class Urun
 
     public string UrunKodu { get; set; } = null!;
 
-    public int ParaBirimiId { get; set; }
+    public string ParaBirimiAdi { get; set; }
 
     public decimal Fiyat { get; set; }
 
@@ -20,12 +20,11 @@ public partial class Urun
 
     public string? Aciklama { get; set; }
 
-    //[JsonPropertyName("UrunKategorisiAdi")]
-    public int UrunKategorisiId { get; set; }
+    public string? UrunKategorisiAdi { get; set; }
 
-    [JsonIgnore]
-    public virtual ParaBirimi ParaBirimi { get; set; } = null!;
+    public string? AnaKategoriAdi { get; set; }
 
-    [JsonIgnore]
-    public virtual ICollection<UrunKategorisi> UrunKategorisis { get; } = new List<UrunKategorisi>();
+    //public virtual ParaBirimi ParaBirimi { get; set; } = null!;
+
+    //public virtual ICollection<UrunKategorisi> UrunKategorisis { get; } = new List<UrunKategorisi>();
 }

@@ -15,6 +15,14 @@ public partial class ETicaretContext : DbContext
     {
     }
 
+    public virtual DbSet<VMusteri> VMusteriler { get; set; }
+
+    public virtual DbSet<VUrun> VUrunler { get; set; }
+
+    public virtual DbSet<VSiparis> VSiparisler { get; set; }
+
+    public virtual DbSet<VTahsilat> VTahsilatlar { get; set; }
+
     public virtual DbSet<Cinsiyet> Cinsiyets { get; set; }
 
     public virtual DbSet<Musteri> Musteris { get; set; }
@@ -45,6 +53,30 @@ public partial class ETicaretContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<VMusteri>(entity =>
+        {
+            entity.ToView("VMusteri");
+            entity.HasNoKey();
+        });
+        
+        modelBuilder.Entity<VUrun>(entity =>
+        {
+            entity.ToView("VUrun");
+            entity.HasNoKey();
+        });
+
+        modelBuilder.Entity<VSiparis>(entity =>
+        {
+            entity.ToView("VSiparis");
+            entity.HasNoKey();
+        });
+
+        modelBuilder.Entity<VTahsilat>(entity =>
+        {
+            entity.ToView("VTahsilat");
+            entity.HasNoKey();
+        });
+
         modelBuilder.Entity<Cinsiyet>(entity =>
         {
             entity.ToTable("Cinsiyet");
@@ -229,7 +261,7 @@ public partial class ETicaretContext : DbContext
 
             entity.Property(e => e.UrunId).HasColumnName("UrunID");
             entity.Property(e => e.Fiyat).HasColumnType("decimal(18, 2)");
-            entity.Property(e => e.KategoriAdi).HasMaxLength(50);
+            entity.Property(e => e.UrunKategorisiId).HasColumnName("UrunKategorisiID");
             entity.Property(e => e.ParaBirimiId).HasColumnName("ParaBirimiID");
             entity.Property(e => e.UrunAdi).HasMaxLength(50);
             entity.Property(e => e.UrunKodu).HasMaxLength(50);
